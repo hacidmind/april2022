@@ -1,14 +1,23 @@
-import {useState} from 'react'
+import { useState } from 'react';
+import {useRouter} from 'next/router'
 
 const Contact = () => {
 
-        const names = ["Ada Lovelace", "Grace Hopper", "Margaret Hamilton"]
+        const names = ["Ada Lovelace", "Grace Hopper", "Margaret Hamilton", "Serena Williams"]
 
         const [likes, setLikes] = useState(0)
+        const [dislikes, setDislikes] = useState(0)
 
-        function handleClick() {
+        function handleLike() {
             setLikes(likes + 1)
         }
+
+    function handleDislikes() {
+        setDislikes(dislikes -1)
+    }
+
+    const router = useRouter()
+
     return (
         <div>
             <h1>Contact Page</h1>
@@ -19,7 +28,13 @@ const Contact = () => {
                 ))}
             </ul>
 
-            <button onClick={handleClick}>Like ({likes})</button>
+            <button onClick={handleLike}>Like ({likes})</button>
+            <button onClick={handleDislikes}>DisLike ({dislikes})</button>
+            <br />
+            <br />
+            <br />
+            <button type='button' onClick={()=> router.push('/')}>Click me To go Home</button>
+            
         </div>
     );
 }
